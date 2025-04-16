@@ -1,4 +1,4 @@
-const API_KEY = "16d3006785084ba0953f2d0b3d9abb68";
+const API_KEY = "YOUR_API_KEY";
 const baseUrl = "https://newsapi.org/v2/everything";
 const sortBy = "publishedAt";
 
