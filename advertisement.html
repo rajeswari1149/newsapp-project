@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advertisement Page</title>
+  <link rel="stylesheet" href="advertisement.css">
+</head>
+<body>
+  <h1 style="text-align: center; color: #fff; margin-top: 50px;">Connect With Us</h1>
+
+  <div id="advertisement-container" role="list"></div>
+
+  <form id="advertisement-form" aria-label="Advertisement Submission Form">
+    <label for="ad-name">Advertisement Name:</label>
+    <input type="text" id="ad-name" name="ad-name" required autocomplete="off" aria-required="true">
+    <label for="website-link">Website Link:</label>
+    <input type="url" id="website-link" name="website-link" required autocomplete="off" aria-required="true">
+    <button type="submit" >Submit Advertisement</button>
+  </form>
+
+  <script>
+    const advertisements = [];
+
+    document.getElementById('advertisement-form').addEventListener('submit', function(event) {
+      event.preventDefault(); 
+
+      const adName = document.getElementById('ad-name').value;
+      const websiteLink = document.getElementById('website-link').value;
+
+      advertisements.push({ name: adName, link: websiteLink });
+
+      document.getElementById('ad-name').value = '';
+      document.getElementById('website-link').value = '';
+
+      displayAdvertisements();
+    });
+
+    function displayAdvertisements() {
+      const advertisementContainer = document.getElementById('advertisement-container');
+      advertisementContainer.innerHTML = ''; 
+
+      advertisements.forEach(advertisement => {
+        const advertisementCard = document.createElement('div');
+        advertisementCard.classList.add('advertisement-card');
+
+        const advertisementImg = document.createElement('img');
+        // Use the link from the fetched advertisement data (replace with actual logic)
+        advertisementImg.src = advertisement.link; 
+        advertisementImg.alt = advertisement.name;
+        advertisementImg.classList.add('advertisement-img');
+
+        advertisementImg.addEventListener('click', function() {
+          window.open(advertisement.link, '_blank');
+        });
+
+        advertisementCard.appendChild(advertisementImg);
+        advertisementContainer.appendChild(advertisementCard);
+      });
+    }
+
+    fetchAdvertisements(); // Call fetchAdvertisements on page load
+
+    function fetchAdvertisements() {
+      fetch('/api/advertisements')
+        .then(response => response.json())
+        .then(advertisements => {
+          advertisements.length = 0; // Clear existing advertisements
+          advertisements.forEach(advertisement => {
+            advertisements.push(advertisement);
+          });
+          displayAdvertisements();
+        })
+        .catch(error => console.error('Error fetching advertisements:', error));
+    }
+  </script>
+</body>
+</html>

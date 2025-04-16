@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Login & Sign up Form</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+
+<style>
+    body {
+        background-color: #4158D0;
+        background-image: linear-gradient(90deg, #e6dab8 0%, #5e410e 46%, #e7dbae 100%);
+        background-size: 100% 100%;
+    }
+
+    .main {
+        background-color: rgba(255, 255, 255, 0.219);
+        backdrop-filter: blur(2px);
+        border-radius: 25px;
+    }
+
+    input {
+        outline: none;
+        background-color: transparent;
+        border: none;
+        border-bottom: 2px solid black;
+        width: calc(100% - 24px); /* Adjusted width to accommodate the checkbox */
+        position: relative;
+        bottom: 0px;
+    }
+
+    .form-group {
+        height: 70px;
+        display: flex;
+        align-items: center; /* Vertically center the input and label */
+    }
+
+    label {
+        position: relative;
+        font-size: 18px;
+        color: rgb(58, 58, 58);
+        transition: .3s;
+    }
+
+    .label-selected {
+        position: relative;
+        font-size: 13px;
+        color: rgb(82, 82, 82);
+    }
+    button {
+    border: none;
+    background-color: rgb(134, 106, 33);
+    color: #fff;
+    font-weight: 500;
+    padding: 10px;
+    width: 100px;
+    border-radius: 30px;
+    transition: .5s; 
+    transform: translate(0px, 0px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin:0 auto;
+    }
+
+    button:hover {
+        box-shadow: 0px 8px 15px -10px rgb(61, 61, 61);
+        transform: translate(0px, -3px);
+    }
+
+    .links {
+        font-size: 14px bold;
+        text-decoration: underline;
+        color: rgb(21, 4, 0);
+    }
+
+    #overlay {
+        background-color: #fff;
+        height: 550px;
+        width: 600px;
+        position: absolute;
+        transform: translate(0px, -25px);
+        border-radius: 25px;
+        background-image: url(https://i.pinimg.com/originals/29/5a/a8/295aa844c88bee96f6dc0c5b6dc04cc8.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        transition: .5s;
+    }
+
+    @media only screen and (max-width: 600px) {
+        body {
+            background-color: lightblue;
+        }
+        #overlay,
+        #signUp {
+            display: none;
+        }
+        button {
+            align-items: center;
+        }
+    }
+
+    .password-input-container {
+        position: relative;
+        margin-top: auto;
+    }
+
+    .show-password-btn {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        cursor:pointer;
+    }
+
+    .show-password-checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.show-password-checkbox:checked {
+  background-color: rgb(134, 106, 33);
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10"><path d="M9.6 0.8L6.5 3.9L4.4 1.8L3.8 2.4L6.5 5.1L10.2 1.4L9.6 0.8Z" fill="white"/></svg>');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+</style>
+
+
+<body>
+    <div class="container  p-4">
+        <div class="row main mt-5">
+
+            <!-- sign up form -->
+            <div class="col-md-6 p-5 " id="signUp">
+                <h1 class="display-4 text-center ">Sign up</h1>
+                <form class="d-flex justify-content-center mt-4" id="signupForm">
+                    <div class="w-75 ">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="signupEmail" placeholder="abc.gmail.com" required>
+                        </div>
+                        <div class="form-group my-4">
+                            <label for="password">Password</label>
+                            <input type="password" id="signupPassword" placeholder="mango@2003" minlength="8" required>
+                           
+                        </div>
+                        <button type="submit">Register</button>
+                        <div class="d-flex justify-content-between mt-5">
+                            <a class="links" href="#" id="loginLink">Already have an Account ?</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-6 p-5 " id="login">
+                <h1 class="display-4 text-center ">Login</h1>
+                <form class="d-flex justify-content-center mt-4" id="loginForm">
+                    <div class="w-75 ">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="loginEmail" placeholder="abc.gmail.com" required>
+                        </div>
+                        
+                        <div class="form-group my-4">
+                            <label for="">Password</label>
+                            <input type="password" id="loginPassword" placeholder="mango@2003" minlength="8" required>
+                        </div>
+                        <button type="submit" id="loginButton">Login</button>
+                        <div class="d-flex justify-content-between mt-5">
+                            <a class="links" href="#" id="registerLink">Create an Account ?</a>
+                            <a class="links" href="#">Forget Password ?</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div  id="overlay">
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById("loginButton").addEventListener("click", function (event) {
+            event.preventDefault(); // Prevent form submission
+            var loginEmail = document.getElementById("loginEmail").value;
+            var loginPassword = document.getElementById("loginPassword").value;
+            var storedEmail = localStorage.getItem("signupEmail");
+            var storedPassword = localStorage.getItem("signupPassword");
+            if (loginEmail === storedEmail && loginPassword === storedPassword) {
+                window.location.href = "advertisement.html"; // Redirect to advertisement page
+            } else {
+                alert("Invalid email or password. Please provide the correct email & password!");
+            }
+        });
+    
+        document.getElementById("signupForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+            var signupEmail = document.getElementById("signupEmail").value;
+            var signupPassword = document.getElementById("signupPassword").value;
+            localStorage.setItem("signupEmail", signupEmail);
+            localStorage.setItem("signupPassword", signupPassword);
+            alert("Registration successful!");
+            document.getElementById("signupForm").reset();
+        });
+    
+        document.querySelectorAll('input').forEach((item) => {
+            item.addEventListener("focus", function () {
+                item.previousElementSibling.className = 'label-selected';
+            })
+            item.addEventListener("blur", function () {
+                console.log(item.value);
+                if (item.value === '') {
+                    item.previousElementSibling.className = '';
+                }
+            })
+        })
+    
+        document.getElementById("registerLink").addEventListener("click", function () {
+            if (window.innerWidth < 600) {
+                document.getElementById("signUp").style.display = 'block';
+                document.getElementById("login").style.display = 'none';
+            }
+            else {
+                document.getElementById("overlay").style.transform = 'translate(550px , -25px)';
+            }
+        })
+        document.getElementById("loginLink").addEventListener("click", function () {
+            if (window.innerWidth < 600) {
+                document.getElementById("login").style.display = 'block';
+                document.getElementById("signUp").style.display = 'none';
+            }
+            else {
+                document.getElementById("overlay").style.transform = 'translate(0px , -25px)';
+            }
+        })
+    
+        // Show password
+        function togglePassword() {
+            var passwordInput = document.getElementById("loginPassword");
+            var showPasswordCheckbox = document.getElementById("show-password-checkbox");
+            if (showPasswordCheckbox.checked) {
+                passwordInput.type = "text";
+            } else {
+                passwordInput.type = "password";
+            }
+        }
+    
+    </script>
+    
